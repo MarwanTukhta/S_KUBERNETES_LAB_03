@@ -199,3 +199,5 @@ check pv-viewer-account.yaml
 <br>
 	5- You can check the output using <kubctl logs -f [ pod-name ]> command.
 <br>
+
+check print-envars-greeting-pod.yaml
