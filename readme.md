@@ -88,10 +88,15 @@ got error `CreateContainerConfigError` because mysql image require enviroment va
 
 
 13- Create a new secret named db-secret with the data given below.
+<br>
 	- Secret Name: db-secret
+<br>
 	- Secret 1: MYSQL_DATABASE=sql01
+<br>
 	- Secret 2: MYSQL_USER=user1
+<br>
 	- Secret 3: MYSQL_PASSWORD=password
+<br>
 	- Secret 4: MYSQL_ROOT_PASSWORD=password123
 <br>
 check db-pod.yaml
@@ -101,10 +106,15 @@ check db-pod.yaml
 check db-pod.yaml
 
 15- Create a multi-container pod with 2 containers.
+<br>
 	- Name: yellow
+<br>
 	- Container 1 Name: lemon 
+<br>
 	- Container 1 Image: busybox
+<br>
 	- Container 2 Name: gold 
+<br>
 	- Container 2 Image: redis
 
 <br>
@@ -116,24 +126,35 @@ check yellow-pod.yaml
 check red-pod.yaml
 
 17- Create a Persistent Volume with the given specification.
+<br>
 	- Volume Name: pv-log
+<br>
 	- Storage: 100Mi
+<br>
 	- Access Modes: ReadWriteMany
+<br>
 	- Host Path: /pv/log
 <br>
 check pv-log-volume.yaml
 
 18- Create a Persistent Volume Claim with the given specification.
+<br>
 	- Volume Name: claim-log-1
+<br>
 	- Storage Request: 50Mi
+<br>
 	- Access Modes: ReadWriteMany
 <br>
 check pv-claim-log.yaml
 
 19- Create a webapp pod to use the persistent volume claim as its storage.
+<br>
 	- Name: webapp
+<br>
 	- Image Name: nginx
+<br>
 	- Volume: PersistentVolumeClaim=claim-log-1
+<br>
 	- Volume Mount: /var/log/nginx
 <br>
 check web-app-pod.yaml
@@ -154,6 +175,7 @@ Create an emptyDir volume name: shared-logs.
 Create two containers from nginx and ubuntu images with latest tag only and remember to mention tag i.e nginx:latest, nginx container name should be nginx-container and ubuntu container name should be sidecar-container on webserver pod.
 Add command on sidecar-container "sh","-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done"
 Mount volume /var/log/nginx on both containers, all containers should be up and running.
+
 <br>
 check webserver-pod.yaml
 
@@ -162,11 +184,18 @@ check webserver-pod.yaml
 check pv-viewer-account.yaml
 
 23- Create a pod named print-envars-greeting.
+<br>
 	1- Configure spec as, the container name should be print-env-container and use bash image.
+<br>
 	2- Create three environment variables:
-		-a GREETING and its value should be Welcome to
-		-b COMPANY and its value should be DevOps
-		-c GROUP and its value should be Industries
+<br>
+		a- GREETING and its value should be Welcome to
+<br>
+		b- COMPANY and its value should be DevOps
+<br>
+		c- GROUP and its value should be Industries
+<br>
 	4- Use command to echo ["$(GREETING) $(COMPANY) $(GROUP)"] message.
+<br>
 	5- You can check the output using <kubctl logs -f [ pod-name ]> command.
 <br>
