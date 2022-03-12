@@ -77,6 +77,7 @@ default-token-8cc2v   kubernetes.io/service-account-token   3      6d3h
 10- How many secrets are defined in the default-token secret?
 <br>
 1
+
 11- create a POD called db-pod with the image mysql:5.7 then check the POD status
 <br>
 check db-pod.yaml
