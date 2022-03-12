@@ -13,14 +13,17 @@ kube-scheduler-minikube            Node         kube-system
 storage-provisioner                <none>       kube-system
 ```
 
+<br>
 2-On which nodes are the static pods created currently?
 <br>
 minikube
 
+<br>
 3- What is the path of the directory holding the static pod definition files?
 <br>
 etc/coredns/Corefile
 
+<br>
 4- Create a static pod named static-busybox that uses the busybox image and the command sleep 1000
 <br>
 check static-busybox-pod.yaml
@@ -29,6 +32,7 @@ $ kubectl apply -f static-busybox-pod.yaml
 pod/static-busybox created
 ```
 
+<br>
 5- Edit the image on the static pod to use busybox:1.28.4
 <br>
 check static-busybox-pod.yaml
@@ -37,6 +41,7 @@ $ kubectl apply -f static-busybox-pod.yaml
 pod/static-busybox configured
 ```
 
+<br>
 6- How many ConfigMaps exist in the environment?
 <br>
 10
@@ -55,6 +60,7 @@ kube-system       kubeadm-config                       1      5d22h
 kube-system       kubelet-config-1.23                  1      5d22h
 ```
 
+<br>
 7- Create a new ConfigMap  Use the spec given below.
        ConfigName Name: webapp-config-map
        Data: APP_COLOR=darkblue
@@ -63,10 +69,12 @@ $ kubectl create cm webapp-config-map --from-literal=APP_COLOR=darkblue
 configmap/webapp-config-map created
 ```
 
+<br>
 8- Create a  webapp-color POD with nginx image and use the created ConfigMap
 <br>
 check webapp-color-pod.yaml
 
+<br>
 9- How many Secrets exist on the system?
 ```
 $ kubectl get secrets
@@ -74,19 +82,23 @@ NAME                  TYPE                                  DATA   AGE
 default-token-8cc2v   kubernetes.io/service-account-token   3      6d3h
 ```
 
+<br>
 10- How many secrets are defined in the default-token secret?
 <br>
 1
 
+<br>
 11- create a POD called db-pod with the image mysql:5.7 then check the POD status
 <br>
 check db-pod.yaml
 
+<br>
 12- why the db-pod status not ready
 <br>
 got error `CreateContainerConfigError` because mysql image require enviroment variables to be set
 
 
+<br>
 13- Create a new secret named db-secret with the data given below.
 <br>
 	- Secret Name: db-secret
@@ -101,10 +113,12 @@ got error `CreateContainerConfigError` because mysql image require enviroment va
 <br>
 check db-pod.yaml
 
+<br>
 14- Configure db-pod to load environment variables from the newly created secret. Delete and recreate the pod if required.
 <br>
 check db-pod.yaml
 
+<br>
 15- Create a multi-container pod with 2 containers.
 <br>
 	- Name: yellow
@@ -121,10 +135,12 @@ check db-pod.yaml
 check yellow-pod.yaml
 
 
+<br>
 16- Create a pod red with redis image and use an initContainer that uses the busybox image and sleeps for 20 seconds
 <br>
 check red-pod.yaml
 
+<br>
 17- Create a Persistent Volume with the given specification.
 <br>
 	- Volume Name: pv-log
@@ -137,6 +153,7 @@ check red-pod.yaml
 <br>
 check pv-log-volume.yaml
 
+<br>
 18- Create a Persistent Volume Claim with the given specification.
 <br>
 	- Volume Name: claim-log-1
@@ -147,6 +164,7 @@ check pv-log-volume.yaml
 <br>
 check pv-claim-log.yaml
 
+<br>
 19- Create a webapp pod to use the persistent volume claim as its storage.
 <br>
 	- Name: webapp
@@ -159,6 +177,7 @@ check pv-claim-log.yaml
 <br>
 check web-app-pod.yaml
 
+<br>
 20- Create a pod named volume-share-datacenter. 
 For first container, use image centos:latest, container should be named as volume-container-datacenter-1, and run a command '/bin/bash', '-c' and 'sleep 10000'. Volume volume-share should be mounted at path /tmp/news.
 For second container, use image centos:latest, container should be named as volume-container-datacenter-2, and run a command '/bin/bash', '-c' and 'sleep 10000'. Volume volume-share should be mounted at path /tmp/cluster.
@@ -170,6 +189,7 @@ The file news.txt should be present under the mounted path /tmp/cluster of secon
 check volume-share-datacenter.yaml
 
 
+<br>
 21- Create a pod named webserver.
 Create an emptyDir volume name: shared-logs.
 Create two containers from nginx and ubuntu images with latest tag only and remember to mention tag i.e nginx:latest, nginx container name should be nginx-container and ubuntu container name should be sidecar-container on webserver pod.
@@ -179,10 +199,12 @@ Mount volume /var/log/nginx on both containers, all containers should be up and 
 <br>
 check webserver-pod.yaml
 
+<br>
 22- Create a new service account with the name pvviewer. Grant this Service account access to list all PersistentVolumes in the cluster by creating an appropriate cluster role called pvviewer-role and ClusterRoleBinding called pvviewer-role-binding.
 <br>
 check pv-viewer-account.yaml
 
+<br>
 23- Create a pod named print-envars-greeting.
 <br>
 	1- Configure spec as, the container name should be print-env-container and use bash image.
